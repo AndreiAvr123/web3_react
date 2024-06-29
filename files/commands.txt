@@ -1,0 +1,22 @@
+vite = npm create vite@latest module -- --template react
+
+axios = npm install axios
+
+db =    npx json-server --port 3001 --watch db.json
+        npm install json-server --save-dev
+
+server db = npm run server
+
+mongoDB
+        npm install mongoose
+        npm install dotenv
+route
+        npm install react-router-dom        
+ant design
+        npm install antd --save
+graphQL
+        server
+                npm install --save graphql
+                npm install @apollo/server graphql
+        client
+                npm install @apollo/client graphql

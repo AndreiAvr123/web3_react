@@ -1,0 +1,55 @@
+query ExampleQuery {
+  
+  findPerson(name: "Arto Hellas") {
+    phone
+    address {
+      city
+      street
+    }
+  }
+  
+  personCount
+
+  allPersons(phone: YES) {
+    id
+    name
+    phone
+    address {
+      city
+      street
+    }
+    
+  }
+}
+
+mutation addPerso{
+  addPerson(
+    name: "Pekka Mikkola"
+    phone: "045-2374321"
+    street: "Vilppulantie 25"
+    city: "Helsinki"
+  ) {
+    name
+    phone
+    address{
+      city
+      street
+    }
+    id
+  }
+}
+
+mutation editNumPerso{
+  editNumber (
+    name: "Pekka Mikkola"
+    phone: "025-4364312"
+  ){
+    name
+    phone
+    address{
+      city
+      street
+    }
+    id
+  }
+}
