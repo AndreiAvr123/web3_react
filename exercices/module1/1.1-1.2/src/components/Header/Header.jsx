@@ -1,6 +1,11 @@
+import imageIPL from "/LOGO HE VINCI.png";
+
 const Header = (props) => {
     return (
-        <h1>{props.title}</h1>
+        <div>
+            <img src={imageIPL} alt="logo" />
+            <h1>{props.title}</h1>
+        </div>
     );
 }
 
