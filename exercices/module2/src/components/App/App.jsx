@@ -6,23 +6,26 @@ import './App.css'
 const App = () => {
   const [ counter, setCounter ] = useState(0)
 
-  const increase = () => setCounter(counter + 1)
-  const decrease = () => setCounter(counter - 1)
-  const reset = () => setCounter(0)
+  const changeCount = (delta) => {
+    setCounter(counter + delta)
+  }
 
   return (
     <div>
       <Display counter={counter}/>
       <Button
-        onClick={increase}
+        changeCount={changeCount}
+        delta={1}
         text='plus'
       />
       <Button
-        onClick={reset}
+        changeCount={changeCount}
+        delta={-counter}
         text='zero'
       />     
       <Button
-        onClick={decrease}
+        changeCount={changeCount}
+        delta={-1}
         text='minus'
       />           
     </div>
