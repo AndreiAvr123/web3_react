@@ -9,6 +9,7 @@ server db = npm run server
 
 mongoDB
         npm install mongoose
+        npm install mongodb
         npm install dotenv
 route
         npm install react-router-dom        
