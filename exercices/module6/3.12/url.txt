@@ -1,1 +1,1 @@
-mongodb+srv://nathan:<password>@clusterweb3.80jzzl3.mongodb.net/?retryWrites=true&w=majority&appName=ClusterWeb3
+mongodb+srv://nathan:nathan123@clusterweb3.80jzzl3.mongodb.net/?retryWrites=true&w=majority&appName=ClusterWeb3
