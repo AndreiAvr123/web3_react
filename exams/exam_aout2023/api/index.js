@@ -6,6 +6,9 @@ const middlewares = require('./utils/middlewares');
 const { createDbWithData } = require('./utils/db-creation');
 const { asyncStartMongMemoryServer } = require('./utils/mongo-memory-server');
 
+const jokesRouter = require('./routes/jokes');
+const scoresRouter = require('./routes/scores');
+
 const startAsyncDbWork = async () => {
   try {
     if (!MONGODB_URI) {
@@ -44,6 +47,10 @@ app.use(express.json());
 app.use(middlewares.logger);
 
 app.use(middlewares.errorHandler);
+
+// Routes
+app.use('/api/jokes', jokesRouter);
+app.use('/api/scores', scoresRouter);
 
 // Start server
 app.listen(PORT ?? 3001, () => {

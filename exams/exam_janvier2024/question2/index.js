@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const middlewares = require('./utils/middlewares');
 const { createDbWithData } = require('./utils/db-creation');
 const { asyncStartMongMemoryServer } = require('./utils/mongo-memory-server');
+const jokesRouter = require('./routes/jokes');
 
 const startAsyncDbWork = async () => {
   try {
@@ -45,6 +46,9 @@ app.use(express.json());
 app.use(middlewares.logger);
 
 app.use(middlewares.errorHandler);
+
+// Use routes
+app.use('/jokes', jokesRouter);
 
 // Start server
 app.listen(PORT ?? 3001, () => {

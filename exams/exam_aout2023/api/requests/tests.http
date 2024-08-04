@@ -1,0 +1,91 @@
+@hostname = localhost
+@port = 3001
+@host = http://{{hostname}}:{{port}}
+@jokeId = 6461f476d9a9da9dbeade36e
+@deletedJokeId = 6461f476d9a9da9dbeade34e
+@nonexistentJokeId = 64b8b32e9f4d2e3a556c88f1
+
+### Read all jokes
+GET {{host}}/api/jokes HTTP/1.1
+Accept: application/json
+
+### Read a joke
+GET {{host}}/api/jokes/{{jokeId}} HTTP/1.1
+
+### Delete a joke
+DELETE {{host}}/api/jokes/{{deletedJokeId}} HTTP/1.1
+
+### Create a joke
+POST {{host}}/api/jokes HTTP/1.1
+Content-Type: application/json
+
+{
+  "question": "What do you call a fish with no eyes?",
+    "answer": "Fsh",
+    "category": "Pun"
+}
+
+### Read all scores
+GET {{host}}/api/scores HTTP/1.1
+
+### Create a score
+POST {{host}}/api/scores HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "John",
+    "score": 7,
+    "joke": "{{jokeId}}"
+}
+
+### Errors Tests
+
+### Create a joke with missing fields
+POST {{host}}/api/jokes HTTP/1.1
+Content-Type: application/json
+
+{
+  "question": "What don"
+}
+
+### Create a joke with invalid fields
+POST http://localhost:3001/api/jokes HTTP/1.1
+Content-Type: application/json
+
+{
+    "question": "W?",
+    "answer": "To get to the other side!",
+    "category": "Humor"
+}
+
+
+### Create a score with short username
+POST http://localhost:3001/api/scores HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "Jo",
+    "score": 8,
+    "joke": "{{jokeId}}"
+}
+
+### Create a score with a non-existing joke
+POST http://localhost:3001/api/scores HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "JohnDoe",
+    "score": 8,
+    "joke": "{{nonexistentJokeId}}"
+}
+
+
+### Create a score with a joke already rated
+POST http://localhost:3001/api/scores HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "JohnDoe",
+    "score": 8,
+    "joke": "{{jokeId}}"
+}

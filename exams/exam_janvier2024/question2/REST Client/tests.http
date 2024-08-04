@@ -1,3 +1,53 @@
 @baseUrl=http://localhost:3001
+@jokeId=6461f476d9a9da9dbeade34e
 
-### Complete this file with your own request to tests your API
+### Read all jokes
+GET {{baseUrl}}/jokes HTTP/1.1
+Accept: application/json
+
+### Add a comment to a joke
+POST {{baseUrl}}/jokes/comments/{{jokeId}} HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "NJKatorz",
+    "comment": "This is a comment"
+}
+
+### Add a comment to a joke
+POST {{baseUrl}}/jokes/comments/{{jokeId}} HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "NiggaChill",
+    "comment": "Cool joke ma boi"
+}
+
+### Comment less than 5 characters
+POST {{baseUrl}}/jokes/comments/{{jokeId}} HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "NJKatorz",
+    "comment": "No"
+}
+
+### Username less than 3 characters
+POST {{baseUrl}}/jokes/comments/{{jokeId}} HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "NJ",
+    "comment": "This is a comment"
+}
+
+
+### The joke does not exist
+POST {{baseUrl}}/jokes/comments/6461f476d9a9da9dbeade34f HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "MarkGrayson",
+    "comment": "This is my comment"
+}
+
