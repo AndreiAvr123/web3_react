@@ -5,7 +5,8 @@ const scoreSchema = new mongoose.Schema({
     username: String,
     date : Date,
     score: Number,
-    joke: ObjectId
+    // joke: ObjectId
+    joke : { type: ObjectId, ref: 'Joke' }
 })
 
 scoreSchema.set('toJSON', {
