@@ -1,0 +1,12 @@
+Lire les consignes !!!!!!!! (10 min. max!!!!!!!!!)
+
+Backend (30 min. max):
+	- model
+	- index.js ou app.js
+	- routes
+	- tests http
+Frontend:
+	- services API
+	- Contexts (AppLoader, main.jsx et fichier Context (10 min.))
+	- Router
+	- App components
