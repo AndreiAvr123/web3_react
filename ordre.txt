@@ -1,12 +1,15 @@
 Lire les consignes !!!!!!!! (10 min. max!!!!!!!!!)
 
-Backend (30 min. max):
+Backend (module 6 (30 min. max)):
 	- model
 	- index.js ou app.js
 	- routes
 	- tests http
-Frontend:
+Frontend (module 4, 5 et 7):
 	- services API
 	- Contexts (AppLoader, main.jsx et fichier Context (10 min.))
-	- Router
 	- App components
+	- Router
+Extensions VSCode :
+	- Rest CLIENT
+	- Copilot

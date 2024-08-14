@@ -1,34 +1,58 @@
-const {MONGODB_URI, PORT} = require('./utils/config')
-const express = require('express')
-const cors = require('cors')
-const mongoose = require('mongoose')
-const middlewares = require('./utils/middlewares')
+const { MONGODB_URI, PORT, DB_NAME } = require('./utils/config');
+const express = require('express');
+const cors = require('cors');
+const mongoose = require('mongoose');
+const middlewares = require('./utils/middlewares');
+const { createDbWithData } = require('./utils/db-creation');
+const { asyncStartMongMemoryServer } = require('./utils/mongo-memory-server');
 
+const eventsRouter = require('./routes/events');
+const childrenRouter = require('./routes/children');
 
-// Connect to database
-mongoose.connect(
-  MONGODB_URI, 
-  { 
-    useNewUrlParser: true, 
-    useUnifiedTopology: true, 
-    useFindAndModify: false,
-    useCreateIndex: true 
+const startAsyncDbWork = async () => {
+  try {
+    if (!MONGODB_URI) {
+      const mongoMemoryServer = await asyncStartMongMemoryServer();
+      await createDbWithData(mongoMemoryServer);
+      // Connect to database
+      await mongoose.connect(mongoMemoryServer.getUri(), {
+        dbName: DB_NAME ?? 'exam-web3',
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      });
+      console.log('Connected to database via Mongoose');
+      return;
+    }
+
+    // Connect to database
+    await mongoose.connect(MONGODB_URI, {
+      dbName: DB_NAME ?? 'exam-web3',
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log('Connected to database via Mongoose');
+  } catch (err) {
+    console.error('Unable to connect to database', err);
   }
-)
-  .then(() => console.log("Connected to database"))
-  .catch((err) => console.error("Unable to connect to database", err))
+};
+
+startAsyncDbWork();
 
 // Create server
-const app = express()
+const app = express();
 
 // Init server
-app.use(cors())
-app.use(express.json())
-app.use(middlewares.logger)
+app.use(cors());
+app.use(express.json());
+app.use(middlewares.logger);
 
-app.use(middlewares.errorHandler)
+app.use(middlewares.errorHandler);
+
+// Routes
+app.use('/api/events', eventsRouter);
+app.use('/api/children', childrenRouter);
 
 // Start server
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`)
-})
+app.listen(PORT ?? 3001, () => {
+  console.log(`Server running on port ${PORT ?? 3001}`);
+});
