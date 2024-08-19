@@ -1,0 +1,68 @@
+@baseUrl=http://localhost:3001
+
+### Complete this file with your own request to tests your API
+@idJoke="6461f476d9a9da9dbeade89e"
+
+### Get all jokes
+GET {{baseUrl}}/jokes HTTP/1.1
+Accept: application/json
+
+### Add a comment to a joke
+POST {{baseUrl}}/jokes/comments HTTP/1.1
+Content-Type: application/json
+
+{
+    "jokeId": "6461f476d9a9da9dbeade34e",
+    "username": "lil_NJ",
+    "comment": "This is a comment"
+}
+
+### Add another comment to a joke
+POST {{baseUrl}}/jokes/comments HTTP/1.1
+Content-Type: application/json
+
+{
+    "jokeId": "6461f476d9a9da9dbeade34e",
+    "username": "Mario",
+    "comment": "Yes sir"
+}
+
+### Add a comment to a joke with a short comment
+POST {{baseUrl}}/jokes/comments HTTP/1.1
+Content-Type: application/json
+
+{
+    "jokeId": "6461f476d9a9da9dbeade34e",
+    "username": "shortUser",
+    "comment": "Hi"
+}
+
+### Add a comment to a joke with a short username
+POST {{baseUrl}}/jokes/comments HTTP/1.1
+Content-Type: application/json
+
+{
+    "jokeId": "6461f476d9a9da9dbeade34e",
+    "username": "ab",
+    "comment": "This is a valid comment"
+}
+
+### Add a comment to a nonexistent joke
+POST {{baseUrl}}/jokes/comments HTTP/1.1
+Content-Type: application/json
+
+{
+    "jokeId": "64dba2f5c9a9da9dbeade34f",
+    "username": "validUser",
+    "comment": "This is a valid comment"
+}
+
+### Add a comment to a joke with a username that already exists
+POST {{baseUrl}}/jokes/comments HTTP/1.1
+Content-Type: application/json
+
+{
+    "jokeId": "6461f476d9a9da9dbeade34e",
+    "username": "lil_NJ",
+    "comment": "This is another comment"
+}

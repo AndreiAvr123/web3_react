@@ -20,7 +20,7 @@ POST {{host}}/api/jokes HTTP/1.1
 Content-Type: application/json
 
 {
-  "question": "What do you call a fish with no eyes?",
+    "question": "What do you call a fish with no eyes?",
     "answer": "Fsh",
     "category": "Pun"
 }
@@ -33,7 +33,7 @@ POST {{host}}/api/scores HTTP/1.1
 Content-Type: application/json
 
 {
-    "username": "John",
+    "username": "JohnDoe",
     "score": 7,
     "joke": "{{jokeId}}"
 }
@@ -85,7 +85,7 @@ POST http://localhost:3001/api/scores HTTP/1.1
 Content-Type: application/json
 
 {
-    "username": "John",
+    "username": "JohnDoe",
     "score": 8,
     "joke": "{{jokeId}}"
 }
